@@ -13,6 +13,11 @@ jobs:
   call-main-reusable-workflow:
     runs-on: macos-latest
     steps:
+      - name: check out code
+        uses: actions/checkout@v4
+        with: 
+          repository: skeenan07/github-actions-test-callable
+          ref: main
       - name: Call the main reusable workflow
         uses: skeenan07/github-actions-test-callable/action-main@main
         with:
