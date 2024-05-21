@@ -6,8 +6,8 @@ on:
 env:
   platform: "macos"
   # platform: "ios"
-  var-two: "Hello"
-  var-three: "World"
+  var-2: "Hello"
+  var-3: "World"
 
 jobs:
   call-main-reusable-workflow:
@@ -17,5 +17,5 @@ jobs:
         uses: skeenan07/github-actions-test-callable/action-main@main
         with:
           platform: ${{ env.platform }}
-          var-two: ${{ env.var-two }}
-          var-three: ${{ env.var-three }}
+          var-2: ${{ env.var-2 }}
+          var-3: ${{ env.var-3 }}
