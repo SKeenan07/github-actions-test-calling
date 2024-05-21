@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 env:
-  platform: "macos"
-  # platform: "ios"
+  # platform: "macos"
+  platform: "ios"
   var-2: "Hello"
   var-3: "World"
 
