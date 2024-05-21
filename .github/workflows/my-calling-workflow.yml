@@ -1,0 +1,21 @@
+name: The workflow to call other workflows
+
+on:
+  workflow_dispatch:
+
+env:
+  platform: "macos"
+  # platform: "ios"
+  var-two: "Hello"
+  var-three: "World"
+
+jobs:
+  call-main-reusable-workflow:
+    runs-on: macos-latest
+    steps:
+      - name: Call the main reusable workflow
+        uses: skeenan07/github-actions-test-callable/action-main@main
+        with:
+          platform: ${{ env.platform }}
+          var-two: ${{ env.var-two }}
+          var-three: ${{ env.var-three }}
