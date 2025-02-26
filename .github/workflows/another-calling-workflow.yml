@@ -1,9 +1,18 @@
-name: Callint Workflow 2025 02
+name: Calling Workflow 2025 02
 
 on:
   workflow_dispatch:
 
 jobs:
+  check-out-callable:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        repository: SKeenan07/github-actions-test-callable
+        ref: main
+
   run-reusable-action:
     uses: SKeenan07/github-actions-test-callable/.github/workflows/root-action.yml@main
     with:
