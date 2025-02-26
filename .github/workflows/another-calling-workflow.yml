@@ -8,10 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         repository: SKeenan07/github-actions-test-callable
         ref: main
+    - name: Check contents
+      run: ls -la
 
   run-reusable-action:
     uses: SKeenan07/github-actions-test-callable/.github/workflows/root-action.yml@main
