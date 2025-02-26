@@ -26,7 +26,7 @@ jobs:
       run: ls -la
 
   run-reusable-action:
-    uses: SKeenan07/github-actions-test-callable/.github/workflows/root-action.yml@main
+    uses: SKeenan07/github-actions-test-callable/.github/workflows/root-action.yml@refs/heads/main
     with:
       var-1: ${{ github.event.inputs.var-1 }}
 
