@@ -2,6 +2,16 @@ name: Calling Workflow 2025 02
 
 on:
   workflow_dispatch:
+    inputs:
+      var-1:
+        description: 'Group type: COMPUTER or DEVICE'
+        required: true
+        type: choice
+        options:
+          - COMPUTER
+          - DEVICE
+        default: COMPUTER
+
 
 jobs:
   check-out-callable:
@@ -18,6 +28,5 @@ jobs:
   run-reusable-action:
     uses: SKeenan07/github-actions-test-callable/.github/workflows/root-action.yml@main
     with:
-      var-1: "COMPUTER"
-    # var-1: "DEVICE"
+      var-1: ${{ github.event.inputs.var-1 }}
 
