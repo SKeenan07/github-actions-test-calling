@@ -24,8 +24,9 @@ jobs:
         ref: main
     - name: Check contents
       run: ls -la
-    - name: run reusable action
-      uses: skeenan07/github-actions-test-callable/.github/workflows/root-action.yml@main
-      with:
-        var-1: ${{ github.event.inputs.var-1 }}
+
+  run-reusable-action:
+    uses: skeenan07/github-actions-test-callable/.github/workflows/root-action.yml@main
+    with:
+      var-1: ${{ github.event.inputs.var-1 }}
 
