@@ -1,6 +1,9 @@
 name: Scheduled Time Zone Test
 
 on:
+
+  workflow_dispatch:
+
   schedule:
     - cron: '0 15 * * *' #STANDARD TIME
     - cron: '0 14 * * *' #DAYLIGHT SAVING TIME
