@@ -1,7 +1,6 @@
 name: Scheduled Time Zone Test
 
 on:
-  workflow_dispatch:
   schedule:
     - cron: '0 15 * * *' #STANDARD TIME
     - cron: '0 14 * * *' #DAYLIGHT SAVING TIME
@@ -15,15 +14,15 @@ jobs:
           CURRENT_HOUR=$(TZ="America/New_York" date +'%H')
           if [ "$CURRENT_HOUR" -ne 19 ]; then
             echo "Not 10 AM Eastern Time, skipping."
-            echo "correct-time=false" >> "$GITHUB_ENV"
+            echo "correct-time=false" >> $GITHUB_OUTPUT
           else
             echo "It's 10 AM Eastern Time!"
-            echo "correct-time=true" >> "$GITHUB_ENV"
+            echo "correct-time=true" >> $GITHUB_OUTPUT
           fi
   
   check-out-code:
     runs-on: ubuntu-latest
-    if: $correct-time == 'true'
+    if: ${{ needs.check-time-zone.outputs.correct-time }} == 'true'
     needs: check-time-zone
     steps:
       - name: Checkout
