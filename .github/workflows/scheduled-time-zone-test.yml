@@ -11,8 +11,11 @@ on:
 jobs:
   check-time-zone:
     runs-on: ubuntu-latest
+    outputs:
+      correct-time: ${{ steps.time-check.outputs.correct-time }}
     steps: 
       - name: Check time zone
+        id: time-check
         run: | 
           CURRENT_HOUR=$(TZ="America/New_York" date +'%H')
           if [ "$CURRENT_HOUR" -ne 19 ]; then
@@ -32,7 +35,7 @@ jobs:
   
   check-out-code:
     runs-on: ubuntu-latest
-    if: ${{ needs.check-time-zone.outputs.correct-time }} == 'true'
+    if: needs.check-time-zone.outputs.correct-time == 'true'
     needs: [check-time-zone, display-output]
     steps:
       - name: Checkout
