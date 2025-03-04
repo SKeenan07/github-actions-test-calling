@@ -14,6 +14,7 @@ jobs:
     steps: 
       - name: Check time zone
         run: | 
+          CURRENT_HOUR=$(TZ="America/New_York" date +'%H')
           if [ "$CURRENT_HOUR" -ne 19 ]; then
             echo "Not 10 AM Eastern Time, skipping."
             echo "correct-time=false" >> $GITHUB_ENV
