@@ -14,16 +14,15 @@ jobs:
     steps: 
       - name: Check time zone
         run: | 
-          CURRENT_HOUR=$(TZ="America/New_York" date +'%H')
           if [ "$CURRENT_HOUR" -ne 19 ]; then
             echo "Not 10 AM Eastern Time, skipping."
             echo "correct-time=false" >> $GITHUB_ENV
+            echo "correct-time=false" >> $GITHUB_OUTPUT
           else
             echo "It's 10 AM Eastern Time!"
             echo "correct-time=true" >> $GITHUB_ENV
+            echo "correct-time=true" >> $GITHUB_OUTPUT
           fi
-      - name: Set output
-        run: echo "correct-time=${{ env.correct-time }}" >> $GITHUB_OUTPUT
 
   display-output:
     runs-on: ubuntu-latest
