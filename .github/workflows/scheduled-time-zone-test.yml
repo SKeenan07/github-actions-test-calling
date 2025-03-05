@@ -4,14 +4,16 @@ on:
 
   workflow_dispatch:
     inputs:
-      desired-time:
+      desired-hour:
         description: 'Desired Hour in 24-hour format (Eastern Time)'
         required: true
-        default: '10'  # Default to 10 AM Eastern Time
 
   schedule:
-    - cron: '0 15 * * *' #STANDARD TIME
-    - cron: '0 14 * * *' #DAYLIGHT SAVING TIME
+    - cron: '0 18 * * *' #STANDARD TIME
+    - cron: '0 17 * * *' #DAYLIGHT SAVING TIME
+
+env:
+  DESIRED_HOUR: "13"
 
 jobs:
   check-time-zone:
@@ -23,7 +25,6 @@ jobs:
         id: time-check
         run: | 
           CURRENT_HOUR=$(TZ="America/New_York" date +'%H')
-          DESIRED_HOUR="${{ github.event.inputs.desired-time }}"
           if [ "$CURRENT_HOUR" -ne "$DESIRED_HOUR" ]; then
             echo "Not 10 AM Eastern Time, skipping."
             echo "correct-time=false" >> $GITHUB_OUTPUT
